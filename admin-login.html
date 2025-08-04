@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🔐 Đăng nhập Admin</h1>
+    <form id="adminLoginForm">
+      <input type="text" id="adminUser" placeholder="Tên đăng nhập" required />
+      <input type="password" id="adminPass" placeholder="Mật khẩu" required />
+      <button type="submit">Đăng nhập</button>
+    </form>
+    <div class="success" id="loginFail" style="color: red; display:none;">❌ Sai tài khoản hoặc mật khẩu</div>
+  </div>
+  <script>
+    document.getElementById("adminLoginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const user = document.getElementById("adminUser").value;
+      const pass = document.getElementById("adminPass").value;
+      if (user === "admin" && pass === "123456") {
+        window.location.href = "admin.html";
+      } else {
+        document.getElementById("loginFail").style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>

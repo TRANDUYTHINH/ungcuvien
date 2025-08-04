@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Đăng Ký Ứng Cử</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Đăng ký Ứng cử Ban Chủ Nhiệm</h1>
+    <form id="registerForm">
+      <input type="text" placeholder="Họ và tên" required />
+      <input type="text" placeholder="Lớp" required />
+      <input type="text" placeholder="Chức vụ hiện tại (nếu có)" />
+      <select required>
+        <option value="">Đã vào Đoàn chưa?</option>
+        <option value="Rồi">Rồi</option>
+        <option value="Chưa">Chưa</option>
+      </select>
+      <textarea placeholder="Thông tin cá nhân" required></textarea>
+      <input type="tel" placeholder="Số điện thoại" required />
+      <select required>
+        <option value="">Ứng cử vào chức vụ</option>
+        <option>Chủ nhiệm</option><option>Phó chủ nhiệm</option>
+        <option>Trưởng ban Múa</option><option>Phó ban Múa</option>
+        <option>Trưởng ban Hát</option><option>Phó ban Hát</option>
+        <option>Trưởng ban Hậu cần</option><option>Phó ban Hậu cần</option>
+      </select>
+      <input type="file" accept="image/*" id="avatar">
+      <img id="preview" style="display:none; width:120px; margin-top:10px; border-radius:10px;">
+      <button type="submit">Gửi đăng ký</button>
+    </form>
+    <div class="success" id="successMsg">✅ Gửi thành công!</div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
