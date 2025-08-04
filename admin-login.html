@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>🔐 Đăng nhập Admin</h1>
+    <h1>🔐 Dành Cho Người Quản Lý Và Điều Hành! 🔐</h1>
     <form id="adminLoginForm">
       <input type="text" id="adminUser" placeholder="Tên đăng nhập" required />
       <input type="password" id="adminPass" placeholder="Mật khẩu" required />
@@ -27,5 +27,17 @@
       }
     });
   </script>
+  <div style="margin-top: 30px; text-align: center;">
+  <button onclick="goBack()" style="padding: 10px 20px; background-color: #4b0082; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🔙 Quay lại trang trước
+  </button>
+</div>
+
+<script>
+  function goBack() {
+    window.history.length > 1 ? window.history.back() : window.location.href = 'index.html';
+  }
+</script>
+
 </body>
 </html>

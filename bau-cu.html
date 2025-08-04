@@ -3,18 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <title>Bầu Cử CLB Văn Nghệ</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>🗳️ BẦU CHỌN ỨNG VIÊN</h1>
-    <p>Chọn một ứng viên cho chức vụ <b>Chủ nhiệm</b>:</p>
-    <form>
-      <label><input type="radio" name="vote" /> Nguyễn Văn A</label><br>
-      <label><input type="radio" name="vote" /> Trần Thị B</label><br>
-      <label><input type="radio" name="vote" /> Lê Văn C</label><br>
-      <button type="submit">Bầu chọn</button>
+    <h1>🗳️ BẦU CỬ CHỨC VỤ CHỦ NHIỆM</h1>
+
+    <div id="alreadyVoted" style="display:none; color: red; font-weight: bold; margin-bottom: 20px;">
+      ⚠️ Bạn đã bầu rồi. Mỗi người chỉ được bầu 1 lần.
+    </div>
+
+    <form id="voteForm">
+      <label><input type="radio" name="vote" value="Nguyễn Văn A"> Nguyễn Văn A</label><br>
+      <label><input type="radio" name="vote" value="Trần Thị B"> Trần Thị B</label><br>
+      <label><input type="radio" name="vote" value="Lê Văn C"> Lê Văn C</label><br>
+      <button type="submit">Gửi phiếu bầu</button>
     </form>
+
+    <h2>Kết quả hiện tại:</h2>
+    <ul id="results"></ul>
+
+    <div style="margin-top: 20px; text-align: center;">
+      <button onclick="goBack()">🔙 Quay lại</button>
+    </div>
+
+    <script>
+      const voteKey = 'votes';
+      const votedKey = 'hasVoted';
+      const resultEl = document.getElementById("results");
+      const form = document.getElementById("voteForm");
+      const alreadyVotedMsg = document.getElementById("alreadyVoted");
+
+      function renderResults() {
+        const data = JSON.parse(localStorage.getItem(voteKey) || '{}');
+        const output = Object.entries(data)
+          .map(([name, count]) => `<li><b>${name}</b>: ${count} phiếu</li>`)
+          .join('');
+        resultEl.innerHTML = output || "<li>Chưa có ai bầu.</li>";
+      }
+
+      function checkIfVoted() {
+        const hasVoted = localStorage.getItem(votedKey);
+        if (hasVoted) {
+          form.style.display = "none";
+          alreadyVotedMsg.style.display = "block";
+        }
+      }
+
+      form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const selected = document.querySelector('input[name="vote"]:checked');
+        if (!selected) {
+          alert("Vui lòng chọn một ứng viên.");
+          return;
+        }
+
+        const name = selected.value;
+        const data = JSON.parse(localStorage.getItem(voteKey) || '{}');
+        data[name] = (data[name] || 0) + 1;
+        localStorage.setItem(voteKey, JSON.stringify(data));
+        localStorage.setItem(votedKey, "true");
+
+        alert("✅ Bạn đã bầu cho " + name);
+        form.style.display = "none";
+        alreadyVotedMsg.style.display = "block";
+        renderResults();
+      });
+
+      function goBack() {
+        history.length > 1 ? history.back() : location.href = "index.html";
+      }
+
+      renderResults();
+      checkIfVoted();
+    </script>
   </div>
 </body>
 </html>

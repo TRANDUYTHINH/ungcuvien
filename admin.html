@@ -11,5 +11,17 @@
     <div id="adminList">Đang tải...</div>
   </div>
   <script src="script.js"></script>
+  <div style="margin-top: 30px; text-align: center;">
+  <button onclick="goBack()" style="padding: 10px 20px; background-color: #4b0082; color: white; border: none; border-radius: 8px; cursor: pointer;">
+    🔙 Quay lại trang trước
+  </button>
+</div>
+
+<script>
+  function goBack() {
+    window.history.length > 1 ? window.history.back() : window.location.href = 'index.html';
+  }
+</script>
+
 </body>
 </html>
